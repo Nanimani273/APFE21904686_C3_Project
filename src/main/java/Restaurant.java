@@ -19,30 +19,28 @@ public class Restaurant {
 
     public boolean isRestaurantOpen() {
         LocalTime currentTime = getCurrentTime();
-        if (currentTime.compareTo(this.openingTime) >= 0 && currentTime.compareTo(this.closingTime) <= 0) {
+        if(currentTime.compareTo(this.openingTime)>=0 && currentTime.compareTo(this.closingTime)<=0){
             return true;
         }
         return false;
     }
 
-    public LocalTime getCurrentTime() {
-        return LocalTime.now();
-    }
+    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
         return menu;
     }
 
-    private Item findItemByName(String itemName) {
-        for (Item item : menu) {
-            if (item.getName().equals(itemName))
+    private Item findItemByName(String itemName){
+        for(Item item: menu) {
+            if(item.getName().equals(itemName))
                 return item;
         }
         return null;
     }
 
     public void addToMenu(String name, int price) {
-        Item newItem = new Item(name, price);
+        Item newItem = new Item(name,price);
         menu.add(newItem);
     }
 
@@ -54,13 +52,12 @@ public class Restaurant {
 
         menu.remove(itemToBeRemoved);
     }
-
-    public void displayDetails() {
-        System.out.println("Restaurant:" + name + "\n"
-                + "Location:" + location + "\n"
-                + "Opening time:" + openingTime + "\n"
-                + "Closing time:" + closingTime + "\n"
-                + "Menu:" + "\n" + getMenu());
+    public void displayDetails(){
+        System.out.println("Restaurant:"+ name + "\n"
+                +"Location:"+ location + "\n"
+                +"Opening time:"+ openingTime +"\n"
+                +"Closing time:"+ closingTime +"\n"
+                +"Menu:"+"\n"+getMenu());
 
     }
 
@@ -68,7 +65,7 @@ public class Restaurant {
         return name;
     }
 
-    public int getOrderValue(List<String> order) {
+    public int getOrderValue(List<String> order){
         int amount = 0;
         for (String itemName : order) {
             amount += findItemByName(itemName).getPrice();
